@@ -25,8 +25,6 @@ jobs:
       - run: npm test
 
   ship:
-    docker:
-      - image: circleci/node:8.11.1-stretch
     - setup_remote_docker
     - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - run:
