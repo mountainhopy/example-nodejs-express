@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-
+    - run: echo Hello!
   test:
     docker:
       - image: circleci/node:8.11.1-stretch
@@ -47,7 +47,7 @@ jobs:
               /
     - run: echo DONE!
 
-    
+
 workflows:
   version: 2
   build_test_ship_deploy:
