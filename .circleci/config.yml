@@ -1,7 +1,10 @@
 version: 2
 jobs:
   build:
+    docker:
+      - image: circleci/node:8.11.1-stretch
     - run: echo Hello!
+
   test:
     docker:
       - image: circleci/node:8.11.1-stretch
@@ -21,6 +24,8 @@ jobs:
       - run: npm test
 
   ship:
+    docker:
+      - image: circleci/node:8.11.1-stretch
     - setup_remote_docker
     - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - run:
@@ -33,6 +38,8 @@ jobs:
             docker push wtl235/example-nodejs-circle:${CIRCLE_SHA1}
 
   deploy:
+    docker:
+      - image: circleci/node:8.11.1-stretch
     - run:
         name: "Call to rancher to deploy"
         command: |
