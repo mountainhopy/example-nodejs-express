@@ -37,8 +37,6 @@ jobs:
             docker push wtl235/example-nodejs-circle:${CIRCLE_SHA1}
 
   deploy:
-    docker:
-      - image: circleci/node:8.11.1-stretch
     - run:
         name: "Call to rancher to deploy"
         command: |
