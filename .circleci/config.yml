@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+
   test:
     docker:
       - image: circleci/node:8.11.1-stretch
@@ -18,6 +19,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
+
   ship:
     - setup_remote_docker
     - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
@@ -29,6 +31,7 @@ jobs:
             docker build -t wtl235/example-nodejs-circle:${CIRCLE_SHA1} .
             docker push wtl235/example-nodejs-circle:latest
             docker push wtl235/example-nodejs-circle:${CIRCLE_SHA1}
+
   deploy:
     - run:
         name: "Call to rancher to deploy"
@@ -43,6 +46,8 @@ jobs:
               --auto_complete --timeout 600 \
               /
     - run: echo DONE!
+
+    
 workflows:
   version: 2
   build_test_ship_deploy:
